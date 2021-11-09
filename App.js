@@ -7,24 +7,21 @@
  */
 import 'react-native-gesture-handler';
 import React from 'react';
-
-import { View, Text, FlatList } from 'react-native';
+import { StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from './screens/HomeScreen';
 import { DescriptionScreen } from './screens/DescriptionScreen';
-import { HomeStyle } from './screens/HomeStyle';
 
 const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: 'lightgreen',
-          },
-        }}>
+      <StatusBar
+        backgroundColor="#6200ee"
+        barStyle="light-content"
+      />
+      <Stack.Navigator headerMode="none">
         <Stack.Screen name="LIST" component={HomeScreen} />
         <Stack.Screen name="ADD" component={DescriptionScreen} />
       </Stack.Navigator>

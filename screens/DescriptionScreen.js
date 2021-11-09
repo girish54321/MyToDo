@@ -1,19 +1,18 @@
-import 'react-native-gesture-handler';
 import React from 'react';
-
-import {View, Text, TextInput} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { View, Text, TextInput } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Appbar } from 'react-native-paper';
 
 export function DescriptionScreen() {
   return (
     <View
       style={{
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
       }}>
+      <Appbar.Header>
+        <Appbar.BackAction />
+        <Appbar.Content title="Add" subtitle="Add New Todo" />
+      </Appbar.Header>
       <TextInput placeholder="add title"></TextInput>
       <TextInput placeholder="description"></TextInput>
 
