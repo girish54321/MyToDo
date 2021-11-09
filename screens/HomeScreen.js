@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-
 import { View, FlatList } from 'react-native';
 import { useState, useEffect } from 'react';
 import { HomeStyle } from './HomeStyle';
@@ -28,13 +27,10 @@ export function HomeScreen({ navigation }) {
           <Checkbox
             status={item.completed ? 'checked' : 'unchecked'}
             onPress={() => {
-              console.log('asddf');
               let taskArray = Task;
-              // taskArray[index].completed = !completed;
               let updatedObj = { ...item, completed: !item.completed };
               taskArray[index] = updatedObj;
               setTask(taskArray);
-              console.log(taskArray);
               setreload(!reload)
             }}
           />
