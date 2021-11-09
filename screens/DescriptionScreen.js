@@ -22,7 +22,8 @@ export function DescriptionScreen({ navigation, route }) {
         <Appbar.Content title="Add" subtitle="Add New Todo" />
       </Appbar.Header>
       <View style={{ padding: 16 }}>
-        <TextInput placeholder="add title"
+        <TextInput
+          placeholder="add title"
           value={newTask.title}
           onChangeText={(text) => {
             setnewTask({
@@ -42,6 +43,7 @@ export function DescriptionScreen({ navigation, route }) {
         <View style={{ paddingVertical: 14 }} />
         <Button mode="contained" onPress={() => {
           addNewToTo(newTask)
+          //TODO: GoBack Code here
         }}>
           Press me
         </Button>

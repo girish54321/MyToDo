@@ -7,6 +7,7 @@ import { FAB, Appbar, List, Checkbox, Divider } from 'react-native-paper';
 export function HomeScreen({ navigation }) {
   const [Task, setTask] = useState([]);
   const [reload, setreload] = useState(true)
+
   function addNewToTo(item) {
     if (Task && Task.length) {
       setTask([...Task, item])
