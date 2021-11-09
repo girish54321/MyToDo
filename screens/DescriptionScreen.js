@@ -1,9 +1,17 @@
-import React from 'react';
-import { View, Text, TextInput } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Appbar } from 'react-native-paper';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { Appbar, TextInput, Button } from 'react-native-paper';
 
-export function DescriptionScreen() {
+export function DescriptionScreen({ navigation, route }) {
+  const { addNewToTo } = route.params;
+  const [newTask, setnewTask] = useState({
+    completed: false,
+    description: "",
+    id: 2,
+    title: "",
+    userid: 1
+  });
+
   return (
     <View
       style={{
@@ -13,25 +21,31 @@ export function DescriptionScreen() {
         <Appbar.BackAction />
         <Appbar.Content title="Add" subtitle="Add New Todo" />
       </Appbar.Header>
-      <TextInput placeholder="add title"></TextInput>
-      <TextInput placeholder="description"></TextInput>
-
-      <TouchableOpacity>
-        <Text
-          style={{
-            backgroundColor: 'lightgreen',
-            width: 200,
-            fontSize: 30,
-            marginTop: 25,
-            color: 'black',
-            textAlign: 'center',
-          }}
-          onPress={() => {
-            console.warn('pressed');
-          }}>
-          ADD
-        </Text>
-      </TouchableOpacity>
+      <View style={{ padding: 16 }}>
+        <TextInput placeholder="add title"
+          value={newTask.title}
+          onChangeText={(text) => {
+            setnewTask({
+              ...newTask,
+              title: text
+            })
+          }} />
+        <View style={{ paddingVertical: 14 }} />
+        <TextInput placeholder="description"
+          value={newTask.description}
+          onChangeText={(text) => {
+            setnewTask({
+              ...newTask,
+              description: text
+            })
+          }} />
+        <View style={{ paddingVertical: 14 }} />
+        <Button mode="contained" onPress={() => {
+          addNewToTo(newTask)
+        }}>
+          Press me
+        </Button>
+      </View>
     </View>
   );
 }

@@ -1,20 +1,20 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { HomeStyle } from './HomeStyle';
 import { FAB, Appbar, List, Checkbox, Divider } from 'react-native-paper';
-const data = require('./todo.json');
+
 export function HomeScreen({ navigation }) {
-  const [Task, setTask] = useState(null);
+  const [Task, setTask] = useState([]);
   const [reload, setreload] = useState(true)
-
-  useEffect(() => {
-    setTask(data);
-  }, []);
-
-  function addNewToTo() {
-    // TODO: Your logic here
-    setreload(!reload)
+  function addNewToTo(item) {
+    if (Task && Task.length) {
+      setTask([...Task, item])
+      setreload(!reload)
+    } else {
+      setTask([item])
+      setreload(!reload)
+    }
   }
 
   function Item({
@@ -68,7 +68,9 @@ export function HomeScreen({ navigation }) {
         color={"#6200ee"}
         icon="plus"
         onPress={() => {
-          navigation.navigate('ADD');
+          navigation.navigate('ADD', {
+            addNewToTo: addNewToTo,
+          });
         }}
       />
     </View>
