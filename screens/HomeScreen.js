@@ -12,6 +12,7 @@ export function HomeScreen({ navigation }) {
     if (Task && Task.length) {
       setTask([...Task, item])
       setreload(!reload)
+      console.log("Hello");
     } else {
       setTask([item])
       setreload(!reload)
