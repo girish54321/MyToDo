@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { HomeStyle } from './HomeStyle';
 import { FAB, Appbar, List, Checkbox, Divider } from 'react-native-paper';
 
-export function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
   const [Task, setTask] = useState([]);
   const [reload, setreload] = useState(true)
 
@@ -19,6 +19,16 @@ export function HomeScreen({ navigation }) {
     }
   }
 
+  function updateTask(item, index) {
+    console.log("item", item);
+    console.log("index", index);
+    let taskArray = Task;
+    let updatedObj = item;
+    taskArray[index] = updatedObj;
+    setTask(taskArray);
+    setreload(!reload)
+  }
+
   function Item({
     item,
     index
@@ -26,6 +36,13 @@ export function HomeScreen({ navigation }) {
     return (
       <View>
         <List.Item
+          onPress={() => {
+            navigation.navigate('ADD', {
+              item: item,
+              index: index,
+              updateTask: updateTask
+            });
+          }}
           title={item.title}
           description={item.description}
           left={() => (
@@ -47,6 +64,21 @@ export function HomeScreen({ navigation }) {
     );
   }
 
+  function fabButton() {
+    return (
+      <FAB
+        style={HomeStyle.fab}
+        color={"#6200ee"}
+        icon="plus"
+        onPress={() => {
+          navigation.navigate('ADD', {
+            addNewToTo: addNewToTo,
+          });
+        }}
+      />
+    )
+  }
+
   return (
     <View style={HomeStyle.container}>
       <Appbar.Header>
@@ -65,16 +97,7 @@ export function HomeScreen({ navigation }) {
           />
         )}
       />
-      <FAB
-        style={HomeStyle.fab}
-        color={"#6200ee"}
-        icon="plus"
-        onPress={() => {
-          navigation.navigate('ADD', {
-            addNewToTo: addNewToTo,
-          });
-        }}
-      />
+      {fabButton()}
     </View>
   );
 }
